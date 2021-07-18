@@ -7,8 +7,8 @@ const Header = () => (
 	<Wrapper>
 		<Content>
 
-			<LogoImg src={RMDBLogo} alt='rmbd-logo' />;
-			<TMDBLogoImg src={TMDBLogo} alt='tmbd-logo' />;
+			<LogoImg src={RMDBLogo} alt='rmbd-logo' />
+			<TMDBLogoImg src={TMDBLogo} alt='tmbd-logo' />
 
 		</Content>
 	</Wrapper>
