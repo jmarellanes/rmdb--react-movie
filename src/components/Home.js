@@ -1,4 +1,3 @@
-import { useState, useEffect } from "react";
 import API from "../API";
 import { BACKDROP_SIZE, IMAGE_BASE_URL, POSTER_SIZE } from "../config";
 // Hooks
@@ -9,6 +8,7 @@ import Grid from "./Grid";
 import Thumb from "./Thumb";
 
 import NoImage from "../images/no_image.jpg";
+import { Spinner } from "./Spinner.style";
 
 const Home = () => {
 	const { state, loading, error } = useHomeFetch();
@@ -37,6 +37,7 @@ const Home = () => {
 					/>
 				))}
 			</Grid>
+			<Spinner />
 		</>
 	);
 };
