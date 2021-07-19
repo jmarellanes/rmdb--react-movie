@@ -1,5 +1,5 @@
-import { useState, useEffect, useRef } from "react";
-import API from "../API";
+import { useState, useEffect, useRef } from 'react';
+import API from '../API';
 
 const initialState = {
 	page: 0,
@@ -9,11 +9,14 @@ const initialState = {
 };
 
 export const useHomeFetch = () => {
-	const [state, setState] = useState(initialState);
-	const [loading, setLoading] = useState(false);
-	const [error, setError] = useState(false);
+	const [searchTerm, setSearchTerm] = useState(''),
+		[state, setState] = useState(initialState),
+		[loading, setLoading] = useState(false),
+		[error, setError] = useState(false);
 
-	const fetchMovies = async (page = 1, searchTerm = "") => {
+	console.log(searchTerm);
+
+	const fetchMovies = async (page = 1, searchTerm = '') => {
 		try {
 			setError(false);
 			setLoading(true);
@@ -37,5 +40,5 @@ export const useHomeFetch = () => {
 		fetchMovies();
 	}, []); // Dependency array: Trigger use effect when Home component mount at initial render.
 
-	return { state, loading, error };
+	return { state, loading, error, setSearchTerm };
 };

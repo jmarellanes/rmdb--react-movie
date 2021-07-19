@@ -1,17 +1,18 @@
-import API from "../API";
-import { BACKDROP_SIZE, IMAGE_BASE_URL, POSTER_SIZE } from "../config";
+import API from '../API';
+import { BACKDROP_SIZE, IMAGE_BASE_URL, POSTER_SIZE } from '../config';
 // Hooks
-import { useHomeFetch } from "../hooks/useHomeFetch";
+import { useHomeFetch } from '../hooks/useHomeFetch';
+// Assets
+import NoImage from '../images/no_image.jpg';
 // Components
-import HeroImage from "./HeroImage";
-import Grid from "./Grid";
-import Thumb from "./Thumb";
-
-import NoImage from "../images/no_image.jpg";
-import { Spinner } from "./Spinner.style";
+import HeroImage from './HeroImage';
+import Grid from './Grid';
+import Thumb from './Thumb';
+import SearchBar from './SearchBar';
+import Spinner from './Spinner';
 
 const Home = () => {
-	const { state, loading, error } = useHomeFetch();
+	const { state, loading, error, setSearchTerm } = useHomeFetch();
 	console.log(state);
 
 	return (
@@ -23,6 +24,7 @@ const Home = () => {
 					text={state.results[0].overview}
 				/>
 			) : null}
+			<SearchBar setSearchTerm={setSearchTerm} />
 			<Grid header="Popular Movies">
 				{state.results.map((movie) => (
 					<Thumb
@@ -37,7 +39,6 @@ const Home = () => {
 					/>
 				))}
 			</Grid>
-			<Spinner />
 		</>
 	);
 };
