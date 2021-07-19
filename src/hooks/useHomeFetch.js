@@ -16,7 +16,7 @@ export const useHomeFetch = () => {
 
 	console.log(searchTerm);
 
-	const fetchMovies = async (page = 1, searchTerm = '') => {
+	const fetchMovies = async (page, searchTerm = '') => {
 		try {
 			setError(false);
 			setLoading(true);
@@ -35,10 +35,11 @@ export const useHomeFetch = () => {
 		setLoading(false);
 	};
 
-	// Initial render
+	// Initial and search
 	useEffect(() => {
-		fetchMovies();
-	}, []); // Dependency array: Trigger use effect when Home component mount at initial render.
+		setState(initialState);
+		fetchMovies(1, searchTerm);
+	}, [searchTerm]); // Dependency array: Trigger use effect when Home component mount at initial render.
 
-	return { state, loading, error, setSearchTerm };
+	return { state, loading, error, searchTerm, setSearchTerm };
 };

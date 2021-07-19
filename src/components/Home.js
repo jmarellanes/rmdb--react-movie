@@ -12,12 +12,12 @@ import SearchBar from './SearchBar';
 import Spinner from './Spinner';
 
 const Home = () => {
-	const { state, loading, error, setSearchTerm } = useHomeFetch();
+	const { state, loading, error, searchTerm, setSearchTerm } = useHomeFetch();
 	console.log(state);
 
 	return (
 		<>
-			{state.results[0] ? (
+			{!searchTerm && state.results[0] ? (
 				<HeroImage
 					image={`${IMAGE_BASE_URL}${BACKDROP_SIZE}${state.results[0].backdrop_path}`}
 					title={state.results[0].original_title}
@@ -25,7 +25,7 @@ const Home = () => {
 				/>
 			) : null}
 			<SearchBar setSearchTerm={setSearchTerm} />
-			<Grid header="Popular Movies">
+			<Grid header={searchTerm ? 'Search Result' : 'Popular Movies'}>
 				{state.results.map((movie) => (
 					<Thumb
 						key={movie.id}

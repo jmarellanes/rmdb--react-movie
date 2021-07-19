@@ -9,6 +9,7 @@ const SearchBar = ({ setSearchTerm }) => {
 	const initial = useRef(true);
 
 	useEffect(() => {
+		// Snippet to skip initial render on useEffect
 		if (initial.current) {
 			initial.current = false;
 			return;
