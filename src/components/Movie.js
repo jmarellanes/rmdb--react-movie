@@ -7,6 +7,7 @@ import MovieInfo from './MovieInfo';
 import { useMovieFetch } from '../hooks/useMovieFetch';
 // Image
 import NoImage from '../images/no_image.jpg';
+import MovieInfoBar from './MovieInfoBar';
 
 const Movie = () => {
 	const { movieIdPath } = useParams();
@@ -20,6 +21,11 @@ const Movie = () => {
 		<>
 			<BreadCrumb movieTitle={movie.original_title} />
 			<MovieInfo movie={movie} />
+			<MovieInfoBar
+				time={movie.runtime}
+				budget={movie.budget}
+				revenue={movie.revenue}
+			/>
 		</>
 	);
 };
