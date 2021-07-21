@@ -2,12 +2,16 @@ import { useParams } from 'react-router-dom';
 // Components
 import BreadCrumb from './BreadCrumb';
 import Spinner from './Spinner';
+import Grid from './Grid';
 import MovieInfo from './MovieInfo';
+import MovieInfoBar from './MovieInfoBar';
+import Actor from './Actor';
 // Hook
 import { useMovieFetch } from '../hooks/useMovieFetch';
+// Config
+import { IMAGE_BASE_URL, POSTER_SIZE } from '../config';
 // Image
 import NoImage from '../images/no_image.jpg';
-import MovieInfoBar from './MovieInfoBar';
 
 const Movie = () => {
 	const { movieIdPath } = useParams();
@@ -16,7 +20,6 @@ const Movie = () => {
 	if (loading) return <Spinner />;
 	if (error) return <div>Something went wrong...</div>;
 
-	console.log(movie);
 	return (
 		<>
 			<BreadCrumb movieTitle={movie.original_title} />
@@ -26,6 +29,20 @@ const Movie = () => {
 				budget={movie.budget}
 				revenue={movie.revenue}
 			/>
+			<Grid header="Actors">
+				{movie.actors.map((actor) => (
+					<Actor
+						key={actor.credit_id}
+						name={actor.name}
+						character={actor.character}
+						imageURL={
+							actor.profile_path
+								? IMAGE_BASE_URL + POSTER_SIZE + actor.profile_path
+								: NoImage
+						}
+					/>
+				))}
+			</Grid>
 		</>
 	);
 };
